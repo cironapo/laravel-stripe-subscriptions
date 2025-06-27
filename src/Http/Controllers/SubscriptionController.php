@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
 
     public function index(Request $request)
     {
-        return Inertia::render('subscriptions/BillingPage');
+        return Inertia::render('Subscriptions/BillingPage');
     }
 
 
