@@ -24,11 +24,6 @@ php artisan vendor:publish --provider="Cironapo\StripeSubscriptions\StripeSubscr
 ```
 
 
-Aggiornare il database
-```bash
-php artisan migrate
-```
-
 
 Aggiungere le seguenti righe al file **config/services.php**
 ```php
@@ -58,4 +53,14 @@ class User extends Authenticatable
     use Billable;
     ....
 }
+```
+
+
+Aggiornare il database e svuotare le cache
+```bash
+php artisan migrate
+php artisan config:clear
+php artisan config:cache
+php artisan route:clear
+php artisan route:cache
 ```
