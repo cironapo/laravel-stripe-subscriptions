@@ -15,7 +15,7 @@
     <div class="grid grid-rows-1 gap-6">
       <div
         v-for="plan in plans"
-        class="border rounded-lg shadow">
+        class="border rounded-lg bg-white shadow">
         <div class="p-6">
           <h2 class="text-xl font-semibold mb-2">{{ plan.name }}</h2>
           <p class="text-gray-700 mb-4">{{ plan.description }}</p>

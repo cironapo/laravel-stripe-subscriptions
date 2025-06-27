@@ -1,5 +1,5 @@
 <template>
-    <div class="py-10">
+    <div class="max-w-4xl py-10">
         <Billing 
           :title="'Gestione abbonamento'"        
         />
@@ -8,5 +8,5 @@
 </template>
 
 <script setup>
-import Billing from './components/Billing.vue';
+import Billing from './Components/Billing.vue';
 </script>
