@@ -1,0 +1,27 @@
+{
+    "name": "cironapo/laravel-stripe-subscriptions",
+    "description": "Laravel package for Stripe subscriptions integrated with Cashier and Jetstream (Inertia).",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Cironapo\\StripeSubscriptions\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^12.0",
+        "laravel/jetstream": "^5.3",
+        "laravel/cashier": "^15.0",
+        "barryvdh/laravel-dompdf": "^3.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cironapo\\StripeSubscriptions\\StripeSubscriptionsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
