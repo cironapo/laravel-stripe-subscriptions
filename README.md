@@ -30,6 +30,19 @@ php artisan migrate
 ```
 
 
+Aggiungere le seguenti righe al file **config/services.php**
+```php
+ ....
+ 'stripe' => [
+        'model' => App\Models\User::class,
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+ ],
+ ....
+
+```
+
+
 Aggiungere il trait **Billable** nel modello **User**
 ```php
 <?php
