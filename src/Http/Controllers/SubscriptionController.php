@@ -85,11 +85,11 @@ class SubscriptionController extends Controller
             ->newSubscription('default', $request->price)
             //->trialDays(5)
             ->allowPromotionCodes()
-            ->checkout();
-            /*->checkout([
-                'success_url' => $succes_url,
-                'cancel_url' => route('subscription.cancel'),
-            ]);*/
+            //->checkout();
+            ->checkout([
+                'success_url' => route('billing').'?checkout=success',
+                'cancel_url' => route('billing').'?checkout=cancelled',
+            ]);
 
             return response()->json([
                 'checkout_url' => $session->url,
