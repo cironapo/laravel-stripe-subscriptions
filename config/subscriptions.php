@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'billing_page' => 'Subscriptions/BillingPage',
+    'billing_page' => 'Subscriptions/Jetstream/BillingPage',
     'company' => 'My company',
     'plans' => [
        [

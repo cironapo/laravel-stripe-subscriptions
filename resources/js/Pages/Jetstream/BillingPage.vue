@@ -11,12 +11,12 @@ defineProps({
     confirmsTwoFactorAuthentication: Boolean,
     sessions: Array,
 });
-import Billing from '../Subscriptions/Components/Billing.vue';
+import Billing from '../Components/Billing.vue';
 
 </script>
 
 <template>
-    <AppLayout title="Profile">
+    <AppLayout title="Fatturazione">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Fatturazione
