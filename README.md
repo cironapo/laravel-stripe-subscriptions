@@ -1,6 +1,6 @@
 # Laravel Stripe Subscriptions
 
-Un pacchetto Laravel completo per l'integrazione di sottoscrizioni Stripe con Laravel Cashier e Jetstream (Inertia.js). Questo modulo fornisce una soluzione completa per la gestione delle fatturazioni ricorrenti, inclusa la gestione dei piani, sottoscrizioni, fatture e webhook.
+Un pacchetto Laravel completo per l'integrazione di sottoscrizioni Stripe con **Laravel Cashier** e **Jetstream (Inertia.js)**. Questo modulo fornisce una soluzione completa per la gestione delle fatturazioni ricorrenti, inclusa la gestione dei piani, sottoscrizioni, fatture e webhook.
 
 ## 🚀 Caratteristiche
 
@@ -123,39 +123,6 @@ return [
 ];
 ```
 
-## 🔧 Funzionalità Principali
-
-### Gestione Sottoscrizioni
-- Creazione di nuove sottoscrizioni con checkout Stripe
-- Modifica dei piani esistenti
-- Cancellazione con periodo di grazia
-- Ripresa delle sottoscrizioni cancellate
-
-### Gestione Fatture
-- Visualizzazione cronologica delle fatture
-- Download in formato PDF
-- Personalizzazione del template delle fatture
-
-### Webhook Stripe
-- Gestione automatica degli eventi di pagamento
-- Sincronizzazione dello stato delle sottoscrizioni
-- Gestione dei fallimenti di pagamento
-
-### Interfaccia Utente
-- Pagina di fatturazione integrata con Jetstream
-- Componenti Vue.js riutilizzabili
-- Design responsive e moderno
-
-## 🛣️ Route Disponibili
-
-- `GET /billing` - Pagina principale di fatturazione
-- `GET /api/plans` - Lista dei piani disponibili
-- `GET /api/subscription` - Informazioni sulla sottoscrizione corrente
-- `POST /api/subscribe` - Creare/modificare sottoscrizione
-- `POST /api/cancel` - Cancellare sottoscrizione
-- `POST /api/resume` - Riprendere sottoscrizione
-- `GET /api/invoices` - Lista delle fatture
-- `GET /invoice/{id}/download` - Download fattura PDF
 
 ## 📝 Note
 
