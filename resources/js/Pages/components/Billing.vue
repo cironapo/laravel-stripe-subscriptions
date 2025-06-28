@@ -6,7 +6,7 @@
      <SelectPlan/>
      
      <!--Invoices widget-->
-     <Invoices/>
+     <Invoices class="mt-10"/>
  
    </div>
  </template>
