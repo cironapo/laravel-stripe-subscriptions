@@ -1,5 +1,5 @@
 <template>
-    <div class="p-6 bg-white shadow rounded-xl mb-10 mt-10">
+    <div class="p-6 bg-white shadow rounded-xl mb-10">
         <h2 class="text-lg font-semibold mb-4">Fatture</h2>
         <div class="overflow-x-auto">
             <template  v-if="loading || invoices.length > 0">

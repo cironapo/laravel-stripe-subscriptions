@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
 
     public function index(Request $request)
     {
-        return Inertia::render('Subscriptions/BillingPage');
+        return Inertia::render(config('subscriptions.billing_page'));
     }
 
 
@@ -159,7 +159,7 @@ class SubscriptionController extends Controller
      */
     function downloadInvoice(string $invoiceId, Request $request){
         return $request->user()->downloadInvoice($invoiceId, [
-            'vendor' => 'Nome Azienda',
+            'vendor' => config('subscriptions.company'),
             'product' => 'Nome Prodotto/Servizio',
         ]);
     }

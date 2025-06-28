@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'billing_page' => 'Subscriptions/BillingPage',
+    'company' => 'My company',
     'plans' => [
        [
         'name' => 'Basic',
