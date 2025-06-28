@@ -80,3 +80,10 @@ php artisan config:cache
 php artisan route:clear
 php artisan route:cache
 ```
+
+
+Avviare il progetto
+```bash
+npm run dev
+php artisan serve
+```
