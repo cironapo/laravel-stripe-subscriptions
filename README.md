@@ -56,6 +56,22 @@ class User extends Authenticatable
 ```
 
 
+Aggiungere la voce di menu **Fatturazione** nella pagina **resources/js/Layouts/AppLayout.vue**
+```html
+<!-- Navigation Links -->
+<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+        Dashboard
+    </NavLink>
+    ....
+    <NavLink :href="route('billing')" :active="route().current('billing')">
+        Fatturazione
+    </NavLink>
+    ....
+</div>
+```
+
+
 Aggiornare il database e svuotare le cache
 ```bash
 php artisan migrate
