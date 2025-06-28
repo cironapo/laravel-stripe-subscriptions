@@ -1,78 +1,88 @@
-#Installazione
+# Laravel Stripe Subscriptions
+
+Un pacchetto Laravel completo per l'integrazione di sottoscrizioni Stripe con Laravel Cashier e Jetstream (Inertia.js). Questo modulo fornisce una soluzione completa per la gestione delle fatturazioni ricorrenti, inclusa la gestione dei piani, sottoscrizioni, fatture e webhook.
+
+## 🚀 Caratteristiche
+
+- **Gestione Piani**: Configurazione flessibile dei piani di abbonamento con prezzi mensili e annuali
+- **Sottoscrizioni**: Creazione, modifica, cancellazione e ripresa delle sottoscrizioni
+- **Fatturazione**: Visualizzazione e download delle fatture in formato PDF
+- **Webhook Stripe**: Gestione automatica degli eventi Stripe per sincronizzazione in tempo reale
+- **Interfaccia Utente**: Componenti Vue.js predefiniti per Jetstream con Inertia.js
 
 
-Installare **inertia**
+## 📋 Dipendenze
+
+### Dipendenze PHP
+- **PHP**: ^8.2
+- **Laravel Framework**: ^12.0
+- **Laravel Jetstream**: ^5.3 (con Inertia.js)
+- **Laravel Cashier**: ^15.0 (per l'integrazione Stripe)
+- **Barryvdh Laravel DomPDF**: ^3.1 (per la generazione PDF delle fatture)
+
+### Dipendenze Frontend
+- **Vue.js**: 3.x (incluso con Inertia.js)
+- **Inertia.js**: Per la navigazione SPA
+- **Axios**: Per le chiamate API
+
+## 🛠️ Installazione
+
+### 1. Installare Jetstream con Inertia
 ```bash
 php artisan jetstream:install inertia
 ```
 
-Modificare il file *.env* aggiungendo le creadenziali di Stripe
+### 2. Configurare le credenziali Stripe
+Aggiungere al file `.env`:
 ```bash
 STRIPE_KEY=pk_test_51RaZ......
 STRIPE_SECRET=sk_test_51.....
 ```
 
-Pubblicare le risorse del pacchetto **laravel/cashier**
+### 3. Pubblicare le migrazioni di Cashier
 ```bash
 php artisan vendor:publish --tag="cashier-migrations"
 ```
 
-
-Pubblicare le risorse del pacchetto **cironapo/laravel-stripe-subscriptions**
+### 4. Pubblicare le risorse del pacchetto
 ```bash
 php artisan vendor:publish --provider="Cironapo\StripeSubscriptions\StripeSubscriptionsServiceProvider"
 ```
 
-
-
-Aggiungere le seguenti righe al file **config/services.php**
+### 5. Configurare i servizi
+Aggiungere al file `config/services.php`:
 ```php
- ....
- 'stripe' => [
-        'model' => App\Models\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
- ],
- ....
-
+'stripe' => [
+    'model' => App\Models\User::class,
+    'key' => env('STRIPE_KEY'),
+    'secret' => env('STRIPE_SECRET'),
+],
 ```
 
-
-Aggiungere il trait **Billable** nel modello **User**
+### 6. Aggiungere il trait Billable al modello User
 ```php
 <?php
 
 namespace App\Models;
-....
+
 use Laravel\Cashier\Billable;
-...
 
 class User extends Authenticatable
 {
-    ....
     use Billable;
-    ....
+    // ... resto del modello
 }
 ```
 
-
-Aggiungere la voce di menu **Fatturazione** nella pagina **resources/js/Layouts/AppLayout.vue**
+### 7. Aggiungere la voce di menu Fatturazione
+Nel file `resources/js/Layouts/AppLayout.vue`:
 ```html
-<!-- Navigation Links -->
-<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-        Dashboard
-    </NavLink>
-    ....
-    <NavLink :href="route('billing')" :active="route().current('billing')">
-        Fatturazione
-    </NavLink>
-    ....
-</div>
+<NavLink :href="route('billing')" :active="route().current('billing')">
+    Fatturazione
+</NavLink>
 ```
 
-
-Aggiornare il database e svuotare le cache
+### 8. Aggiornare il database e le cache
 ```bash
 php artisan migrate
 php artisan config:clear
@@ -81,9 +91,79 @@ php artisan route:clear
 php artisan route:cache
 ```
 
-
-Avviare il progetto
+### 9. Avviare il progetto
 ```bash
 npm run dev
 php artisan serve
 ```
+
+## ⚙️ Configurazione
+
+Il pacchetto utilizza il file `config/subscriptions.php` per la configurazione dei piani:
+
+```php
+return [
+    'billing_page' => 'Subscriptions/Jetstream/BillingPage',
+    'company' => 'My company',
+    'plans' => [
+        [
+            'name' => 'Basic',
+            'description' => 'Descrizione del piano',
+            'monthly_id' => 'price_1RdQkdC4ftKvdyaHipLWtN2h',
+            'yearly_id' => 'price_1RdQlXC4ftKvdyaHuY9Ah27V',
+            'currency' => '€',
+            'features' => [
+                'Feature 1',
+                'Feature 2',
+                'Feature 3',
+            ],
+        ],
+        // Altri piani...
+    ],
+];
+```
+
+## 🔧 Funzionalità Principali
+
+### Gestione Sottoscrizioni
+- Creazione di nuove sottoscrizioni con checkout Stripe
+- Modifica dei piani esistenti
+- Cancellazione con periodo di grazia
+- Ripresa delle sottoscrizioni cancellate
+
+### Gestione Fatture
+- Visualizzazione cronologica delle fatture
+- Download in formato PDF
+- Personalizzazione del template delle fatture
+
+### Webhook Stripe
+- Gestione automatica degli eventi di pagamento
+- Sincronizzazione dello stato delle sottoscrizioni
+- Gestione dei fallimenti di pagamento
+
+### Interfaccia Utente
+- Pagina di fatturazione integrata con Jetstream
+- Componenti Vue.js riutilizzabili
+- Design responsive e moderno
+
+## 🛣️ Route Disponibili
+
+- `GET /billing` - Pagina principale di fatturazione
+- `GET /api/plans` - Lista dei piani disponibili
+- `GET /api/subscription` - Informazioni sulla sottoscrizione corrente
+- `POST /api/subscribe` - Creare/modificare sottoscrizione
+- `POST /api/cancel` - Cancellare sottoscrizione
+- `POST /api/resume` - Riprendere sottoscrizione
+- `GET /api/invoices` - Lista delle fatture
+- `GET /invoice/{id}/download` - Download fattura PDF
+
+## 📝 Note
+
+- Assicurarsi di configurare correttamente i webhook Stripe per la sincronizzazione automatica
+- I prezzi dei piani vengono recuperati dinamicamente da Stripe
+- Il pacchetto supporta sia pagamenti mensili che annuali
+- Le fatture vengono generate utilizzando DomPDF con template personalizzabili
+
+## 📄 Licenza
+
+MIT License
